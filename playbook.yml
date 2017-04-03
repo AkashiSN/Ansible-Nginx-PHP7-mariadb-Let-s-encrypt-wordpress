@@ -1,0 +1,11 @@
+- name: setup conoha vps
+  hosts: "YOUR_HOSTNAME_HERE"
+  user: root
+
+  roles:
+    - common
+    - php-fpm
+    - nginx
+    - mariadb
+    - certbot
+    - wordpress

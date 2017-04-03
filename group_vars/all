@@ -1,0 +1,9 @@
+# HostName
+HostName: "YOUR_HOSTNAME_HERE"
+
+# mysql
+mysql_root_password: "YOUR_PASS_HERE"
+mysql_db_password: "YOUR_PASS_HERE"
+
+# certbot
+Email: "YOUR_EMAIL_HERE"

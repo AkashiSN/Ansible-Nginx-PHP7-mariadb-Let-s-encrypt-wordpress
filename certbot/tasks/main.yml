@@ -1,0 +1,13 @@
+- name: install certbot
+  yum: name=certbot state=latest
+
+- name: obtains cert keys
+  command: certbot certonly --standalone -d {{ HostName }} -w /var/www/html --email {{ Email }} --agree-tos --keep-until-expiring --non-interactive
+
+- name: auto update cert keys
+  cron:
+    name: certbot
+    cron_file: certbot
+    user: root
+    special_time: daily
+    job: sh -c 'certbot renew && /usr/sbin/service nginx reload' >> /var/log/certbot/cron.log
