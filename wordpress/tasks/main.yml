@@ -1,22 +1,22 @@
-- name: download wordpress
+- name: wordpressをダウンロード
   get_url:
     url="https://wordpress.org/latest.tar.gz"
     dest=/tmp/wordpress.tar.gz
 
-- name: unpack wordpress
+- name: wordpressを展開
   unarchive:
     src: /tmp/wordpress.tar.gz
     dest: /var/www/
     copy: no
 
-- name: change wordpress's owner to nginx
+- name: wordpressの所有者をnginxに変更
   file:
     path: /var/www/wordpress
     owner: nginx 
     group: nginx
     recurse: yes
 
-- name: restart nginx
+- name: Nginxを再起動
   service:
     name: nginx 
     state: restarted

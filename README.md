@@ -2,7 +2,7 @@
 
 ## Description
 
-Building Nginx + PHP 7 + mariadb + Let's encrypt (certbot) + Wordpress environment for clients
+Centos7にNginx + PHP 7 + mariadb + Let's encrypt (certbot) + Wordpressの環境を構築するPlaybookです。
 
 ## Requirements.
 
@@ -14,7 +14,17 @@ Building Nginx + PHP 7 + mariadb + Let's encrypt (certbot) + Wordpress environme
 
 ## Usage
 
-First, you need edit `playbook.yml`,`group_vars/all`
+実行する前に、`playbook.yml`の
+
+```yaml
+vars:
+    HostName: "YOUR_HOSTNAME_HERE" 
+    mysql_root_password: "YOUR_PASS_HERE"
+    mysql_db_password: "YOUR_PASS_HERE"
+    Email: "YOUR_EMAIL_HERE"
+```
+
+この部分を編集してください。
 
 ```bash
 $ ansible-playbook playbook.yml

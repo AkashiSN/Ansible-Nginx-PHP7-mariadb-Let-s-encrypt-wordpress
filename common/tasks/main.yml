@@ -1,23 +1,23 @@
-- name: set timezone to Asia/Tokyo
+- name: タイムゾーンをAsia/Tokyoに設定
   timezone:
     name: Asia/Tokyo
 
-- name: Change hostname
+- name: ホストネームを変更
   hostname:
     name: "{{ HostName }}"
 
-- name: Add EPEL repository
+- name: EPELレポジトリを追加
   shell: creates=/etc/yum.repos.d/epel.repo yum install -y epel-release
 
-- name: Add Remi repository
+- name: Remiレポジトリを追加
   command: rpm -Uivh --replacepkgs http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 
-- name: yum update
+- name: アップデート
   yum:
     name: "*"
     state: latest
 
-- name: Install basic packages
+- name: 基本パッケージをインストール
   yum:
     name: "{{ item }}"
     state: installed
@@ -32,6 +32,7 @@
     - libyaml
     - libyaml-devel
     - tcl-devel
+    - db4-devel
     - libffi-devel
     - gcc
     - libxml2
@@ -40,10 +41,11 @@
     - libxslt-devel
     - vim
     - zsh
+    - jq
     - tree
     - wget
 
-- name: Install Development Tool
+- name: DevelopmentToolをインストール
   yum:
     name: "@Development tools"
     state: latest

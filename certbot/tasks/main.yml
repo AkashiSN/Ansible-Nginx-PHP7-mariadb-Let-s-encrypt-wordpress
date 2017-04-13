@@ -1,12 +1,12 @@
-- name: install certbot
+- name: certbotをインストール
   yum:
     name: certbot
     state: latest
 
-- name: obtains cert keys
+- name: 証明書を取得
   command: certbot certonly --standalone -d {{ HostName }} -w /var/www/html --email {{ Email }} --agree-tos --keep-until-expiring --non-interactive
 
-- name: auto update cert keys
+- name: 証明書の自動更新設定
   cron:
     name: certbot
     cron_file: certbot

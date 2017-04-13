@@ -1,5 +1,12 @@
-- name: setup conoha vps
-  hosts: "YOUR_HOSTNAME_HERE"
+- name: Centos7にNginx + PHP 7 + mariadb + Let's encrypt (certbot) + Wordpress環境を構築
+
+  vars:
+    HostName: "YOUR_HOSTNAME_HERE" 
+    mysql_root_password: "YOUR_PASS_HERE"
+    mysql_db_password: "YOUR_PASS_HERE"
+    Email: "YOUR_EMAIL_HERE"
+
+  hosts: "{{ HostName }}"
   user: root
 
   roles:
@@ -8,4 +15,4 @@
     - nginx
     - mariadb
     - certbot
-    - wordpress
+    - wordpress     # 冪等性がないため2回め移行の実行時はコメントアウト必須

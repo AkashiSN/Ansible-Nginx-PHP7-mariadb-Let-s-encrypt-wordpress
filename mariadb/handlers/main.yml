@@ -1,4 +1,4 @@
-- name: restart mariadb
+- name: mariadbを再起動
   service:
     name: mariadb
     state: restarted

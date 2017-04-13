@@ -1,4 +1,4 @@
-- name: install php-fpm-70
+- name: php-fpm-70をインストール
   yum:
     name: "{{ item }}"
     state: latest
@@ -14,48 +14,48 @@
     - php-opcache
     - php-xml
 
-- name: change listen
+- name: listenをソケットに変更
   replace:
     dest: /etc/php-fpm.d/www.conf
     regexp: "listen = 127.0.0.1:9000"
     replace: "listen = /var/run/php7-fpm.sock"
 
-- name: change user
+- name: Nginxユーザーに変更
   replace:
     dest: /etc/php-fpm.d/www.conf
     regexp: "user = apache"
     replace: "user = nginx"
 
-- name: change group
+- name: Nginxグループに変更
   replace:
     dest: /etc/php-fpm.d/www.conf
     regexp: "group = apache"
     replace: "group = nginx"
 
-- name: uncomment listen.owner
+- name: listen.ownerのコメントアウトを解除
   replace:
     dest: /etc/php-fpm.d/www.conf
     regexp: ";listen.owner = nobody"
     replace: "listen.owner = nginx"
 
-- name: uncomment listen.group
+- name: listen.groupのコメントアウトを解除
   replace:
     dest: /etc/php-fpm.d/www.conf
     regexp: ";listen.group = nobody"
     replace: "listen.group = nginx"
 
-- name: uncomment listen.owner
+- name: listen.modeのコメントアウトを解除
   replace:
     dest: /etc/php-fpm.d/www.conf
     regexp: ";listen.mode = 0660"
     replace: "listen.mode = 0660"
 
-- name: Automatic load when boot
+- name: 自動起動設定
   service:
     name: php-fpm
     enabled: yes
 
-- name: restart php-fpm
+- name: php-fpmを再起動
   service:
     name: php-fpm
     state: restarted

@@ -21,6 +21,6 @@ server {
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 
-    ssl_certificate     /etc/letsencrypt/live/jyoken.info/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/jyoken.info/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/{{ HostName }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ HostName }}/privkey.pem;
 }

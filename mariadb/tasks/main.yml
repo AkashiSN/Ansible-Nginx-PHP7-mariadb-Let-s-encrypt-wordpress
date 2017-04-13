@@ -1,4 +1,4 @@
-- name: install mariadb
+- name: mariadbをインストール
   yum: name={{ item }} state=installed
   with_items:
     - MySQL-python
@@ -6,13 +6,13 @@
     - mariadb-server
     - libselinux-python
 
-- name: start mariadb
+- name: 自動起動設定
   service:
     name: mariadb
     state: started
     enabled: yes
 
-- name: set root password
+- name: Rootユーザーの作成
   mysql_user:
     name: root
     host: localhost
@@ -21,14 +21,14 @@
     login_password: "{{ mysql_root_password }}"
     check_implicit_admin: yes
 
-- name: create datebase wordpress
+- name: wordpressのデータベースを作成
   mysql_db:
     login_user: root
     login_password: "{{ mysql_root_password }}"
     name: wordpress
     state: present
 
-- name: create user wordpress, grant all authority wordpress.* 
+- name: wordpressユーザーを作成し,wordpressのデータベースに全ての権限を付与 
   mysql_user:
     login_user: root
     login_password: "{{ mysql_root_password }}"
