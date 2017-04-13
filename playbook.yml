@@ -15,4 +15,4 @@
     - nginx
     - mariadb
     - certbot
-    - wordpress     # 冪等性がないため2回め移行の実行時はコメントアウト必須
+    - wordpress     # 冪等性がないため2回目以降の実行時はコメントアウト必須
